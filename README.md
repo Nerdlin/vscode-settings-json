@@ -1,80 +1,36 @@
-<div align="center">
+# Instructions
 
-<img src="assets/art.svg" alt="stack art" width="560"/>
+> **NOTE:** Подробности для разных ОС смотрите в документации расширения [Custom CSS and JS Loader](https://marketplace.visualstudio.com/items?itemName=be5invis.vscode-custom-css).
 
-# vscode-settings-json
+VS Code settings JSON, CSS и JS для минималистичной IDE. Настроено под экран 2560×1440 (100%).
 
-**Моя тёмная минималистичная настройка VS Code** — `settings.json` + кастомный CSS/JS.
-Тихий интерфейс, моноширинная типографика, размытая палитра команд и крупный логотип на пустом экране.
+1. Установите расширение **Custom CSS and JS Loader** (`be5invis.vscode-custom-css`) и шрифты [Geist Mono](https://vercel.com/font) и [Monaspace Radon](https://monaspace.githubnext.com/).
+2. Скопируйте нужные строки из [`settings.json`](settings.json) в свой `settings.json` (`Ctrl+Shift+P` → *Preferences: Open User Settings (JSON)*).
+3. Добавьте массив `vscode_custom_css.imports` с путями к файлам [`custom-vscode.css`](custom-vscode.css) и [`vscode-script.js`](vscode-script.js):
 
-![VS Code](https://img.shields.io/badge/VS%20Code-1.1xx-5D6E7A?logo=visualstudiocode&logoColor=white)
-![Font](https://img.shields.io/badge/font-Geist%20Mono-bc9abc)
-![Display](https://img.shields.io/badge/tuned%20for-2560%C3%971440-008c7d)
-![License](https://img.shields.io/badge/license-MIT-4f5971)
-
-</div>
-
----
-
-## ✨ Что внутри
-
-| Файл | Назначение |
-| --- | --- |
-| [`settings.json`](settings.json) | Пользовательские настройки: типографика, «тишина» интерфейса, форматирование, Prettier, Tailwind и т.д. |
-| [`vscode-custom/style.css`](vscode-custom/style.css) | Кастомные стили интерфейса (сайдбар, палитра команд, подсказки, логотип). |
-| [`vscode-custom/script.js`](vscode-custom/script.js) | Размытие фона при открытии палитры команд (`Ctrl+P`) и скрытие sticky-виджетов. |
-| [`assets/art.svg`](assets/art.svg) | Арт со стеком технологий — отображается на пустом экране редактора. |
-
-## 🎨 Особенности
-
-- **Типографика** — `Geist Mono` везде, комментарии в `Monaspace Radon` курсивом (`#008c7d`).
-- **Сайдбар справа**, активити-бар сверху, подсветка выбранного файла `#4f5971`, заголовки `#bc9abc`.
-- **Палитра команд** — градиентный фон, скруглённые углы, backdrop-blur (`script.js` добавляет затемнение/размытие).
-- **Подсказки (hover)** — стеклянный градиент без рамок.
-- **Пустой экран** — крупный арт вместо логотипа VS Code, без списка горячих клавиш.
-- **Адаптация под 2560×1440 (100%)** — размеры шрифтов заданы в `px`, а не в `em`.
-- **«Silence the Noise»** — отключены минимап, номера строк, breadcrumbs, подсветки, lightbulb и прочий шум.
-
-## 🚀 Установка
-
-1. Установите расширение **[Custom CSS and JS Loader](https://marketplace.visualstudio.com/items?itemName=be5invis.vscode-custom-css)** (`be5invis.vscode-custom-css`).
-2. Установите шрифты: [Geist Mono](https://vercel.com/font) и [Monaspace](https://monaspace.githubnext.com/) (Radon).
-3. Скопируйте папку `vscode-custom/` в `C:\Users\<you>\.vscode\`.
-4. Откройте `settings.json` (`Ctrl+Shift+P` → *Preferences: Open User Settings (JSON)*) и перенесите нужные строки из [`settings.json`](settings.json).
-   В `vscode_custom_css.imports` замените `YOUR_NAME` на имя своего пользователя Windows:
    ```jsonc
+   // For Windows
    "vscode_custom_css.imports": [
-     "file:///C:/Users/YOUR_NAME/.vscode/vscode-custom/style.css",
-     "file:///C:/Users/YOUR_NAME/.vscode/vscode-custom/script.js"
+       "file:///C:/Users/YOUR_NAME/custom-vscode.css",
+       "file:///C:/Users/YOUR_NAME/vscode-script.js"
    ]
+
+   // For Mac or Linux
+   // "vscode_custom_css.imports": [
+   //     "file:///Users/YOUR_NAME/custom-vscode.css",
+   //     "file:///Users/YOUR_NAME/vscode-script.js"
+   // ]
    ```
-5. `Ctrl+Shift+P` → **Reload Custom CSS and JS** (запустите VS Code от администратора, если файлы приложения защищены от записи).
-6. После каждого обновления VS Code команду нужно запускать заново. Сообщение «установка повреждена» — ожидаемо, его можно закрыть.
 
-## 🖥️ Подгонка под своё разрешение
+4. Если VS Code установлен в защищённую папку, запустите его от администратора (Windows). На Mac и Linux выдайте себе права на папку с VS Code:
 
-Размеры лежат в самом конце [`style.css`](vscode-custom/style.css) (блок `Scaling for 2560x1440`). Для другого экрана поменяйте числа:
+   ```bash
+   sudo chown -R $(whoami) "/Applications/Visual Studio Code.app/Contents/Resources/app/out"
+   ```
 
-```css
-.monaco-workbench .part.statusbar { font-size: 13px !important; }
-.letterpress { width: min(1100px, 80%) !important; }   /* размер арта на пустом экране */
-```
+   Замените путь на свой, если VS Code стоит в другом месте.
+5. Включите расширение: `Ctrl+Shift+P` → **Enable Custom CSS and JS**.
+6. При желании подправьте CSS и JS под себя. Размеры шрифтов и логотипа для своего разрешения лежат в конце `custom-vscode.css` (блок `Scaling for 2560x1440`).
+7. Перезагрузите: `Ctrl+Shift+P` → **Reload Custom CSS and JS**. После каждого обновления VS Code это нужно повторять. Сообщение «установка повреждена» ожидаемо, его можно закрыть.
 
-## 🧩 Как это устроено
-
-- CSS переопределяет внутренние классы Monaco/Workbench, поэтому после крупных обновлений VS Code селекторы могут устареть.
-- Арт на пустом экране — это `.letterpress` с вшитым SVG (копия — [`assets/art.svg`](assets/art.svg)). Чтобы заменить, подставьте свой SVG в `background-image`.
-- `script.js` следит за `.quick-input-widget` и добавляет/убирает слой `#command-blur`.
-
-## ⚠️ Замечания
-
-- Настройка меняет файлы самого VS Code — используйте на свой риск.
-- Часть расширений в `settings.json` (Prettier, Tailwind CSS, Intelephense, Vetur, Material Icon Theme, CodeSnap) нужно установить отдельно.
-
----
-
-<div align="center">
-
-Сделано с ♥ — [@Nerdlin](https://github.com/Nerdlin)
-
-</div>
+`art.svg` — арт, который показывается на пустом экране редактора (внутри CSS он вшит в `.letterpress`).

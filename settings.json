@@ -192,8 +192,8 @@
     },
     "material-icon-theme.saturation": 0,
     "vscode_custom_css.imports": [
-        "file:///C:/Users/YOUR_NAME/.vscode/vscode-custom/style.css",
-        "file:///C:/Users/YOUR_NAME/.vscode/vscode-custom/script.js"
+        "file:///C:/Users/YOUR_NAME/custom-vscode.css",
+        "file:///C:/Users/YOUR_NAME/vscode-script.js"
     ],
     "workbench.colorTheme": "Bearded Theme feat. Gold D Raynh",
     "workbench.sideBar.location": "right",
